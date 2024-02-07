@@ -27,6 +27,11 @@ public class ProductRepository {
         throw new NoSuchElementException("No product found with ID: " + updatedProduct.getProductId());
     }
 
+    public Product delete(Product deletedProduct) {
+        productData.remove(deletedProduct);
+        return deletedProduct;
+    }
+
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
