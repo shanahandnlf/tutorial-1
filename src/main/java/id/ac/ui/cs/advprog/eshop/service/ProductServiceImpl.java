@@ -35,15 +35,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product edit(Product updatedProduct) {
-        productRepository.edit(updatedProduct);
-        return updatedProduct;
+    public Product edit(Product product) {
+        productRepository.edit(product);
+        return product;
     }
 
     @Override
-    public Product delete(Product deletedProduct) {
-        productRepository.delete(deletedProduct);
-        return deletedProduct;
+    public Product delete(Product product) {
+        productRepository.delete(product);
+        return product;
     }
 
 
