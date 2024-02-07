@@ -14,20 +14,15 @@ public class ProductRepository {
         return product;
     }
 
-    public Product edit (Product updatedProduct){
-        for (Product existingProduct : productData) {
-            if (existingProduct.getProductId().equals(updatedProduct.getProductId())) {
-                String newProductName = updatedProduct.getProductName();
-                int newProductQuantity = updatedProduct.getProductQuantity();
-                existingProduct.setProductName(newProductName);
-                existingProduct.setProductQuantity(newProductQuantity);
-                return updatedProduct;
-            }
-        }
-        throw new NoSuchElementException("No product found with ID: " + updatedProduct.getProductId());
+    public Product edit (Product product){
+        Product existingProduct = findById(product.getProductId());
+        existingProduct.setProductName(product.getProductName());
+        existingProduct.setProductQuantity(product.getProductQuantity());
+        return existingProduct;
     }
 
-    public Product delete(Product deletedProduct) {
+    public Product delete(Product product) {
+        Product deletedProduct = findById(product.getProductId());
         productData.remove(deletedProduct);
         return deletedProduct;
     }
