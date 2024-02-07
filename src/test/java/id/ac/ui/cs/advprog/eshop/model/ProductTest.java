@@ -22,12 +22,28 @@ class ProductTest {
     }
 
     @Test
+    void testInvalidGetProductId() {
+        assertNotEquals("tes-negative", this.product.getProductId());
+    }
+
+    @Test
     void testGetProductName() {
         assertEquals("Sampo Cap Bambang", this.product.getProductName());
+    }
+
+    @Test
+    void testInvalidGetProductName() {
+        assertNotEquals("Sampo Koski", this.product.getProductName());
     }
 
     @Test
     void testGetProductQuantity() {
         assertEquals(100, this.product.getProductQuantity());
     }
+
+    @Test
+    void testInvalidGetProductQuantity() {
+        assertNotEquals(80, this.product.getProductQuantity());
+    }
+
 }
