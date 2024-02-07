@@ -14,6 +14,19 @@ public class ProductRepository {
         return product;
     }
 
+    public Product edit (Product updatedProduct){
+        for (Product existingProduct : productData) {
+            if (existingProduct.getProductId().equals(updatedProduct.getProductId())) {
+                String newProductName = updatedProduct.getProductName();
+                int newProductQuantity = updatedProduct.getProductQuantity();
+                existingProduct.setProductName(newProductName);
+                existingProduct.setProductQuantity(newProductQuantity);
+                return updatedProduct;
+            }
+        }
+        throw new NoSuchElementException("No product found with ID: " + updatedProduct.getProductId());
+    }
+
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
@@ -26,4 +39,6 @@ public class ProductRepository {
         }
         throw new NoSuchElementException("No product with ID: " + productId);
     }
+
+
 }
