@@ -50,7 +50,7 @@ public class ProductController {
     public String deleteProduct(@PathVariable("productId") String productId, Model model) {
         Product product = service.findById(productId);
         service.delete(product);
-        return "redirect:list";
+        return "redirect:../list";
     }
 
 }
