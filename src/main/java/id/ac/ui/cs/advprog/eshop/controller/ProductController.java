@@ -39,4 +39,11 @@ public class ProductController {
         model.addAttribute("product", product);
         return "editProduct";
     }
+
+    @PostMapping("/create")
+    public String editProductPost(@ModelAttribute Product product, Model model){
+        service.edit(product);
+        return "redirect:list";
+    }
+
 }
