@@ -1,6 +1,8 @@
 Shanahan Danualif Erwin - 2206817420
 Pemrograman Lanjut B
 
+Tutorial 1
+
 Refleksi 1
 You already implemented two new features using Spring Boot. Check again your source code
 and evaluate the coding standards that you have learned in this module. Write clean code
@@ -49,3 +51,27 @@ memiliki setup procedures dan instance variable yang sama. Terdapat prinsip don'
 yang berarti kita tidak boleh mengulang dua hal yang sama. Sebaiknya kedua functional test tersebut
 kita gabung saja agar mengingat kemiripan proses setup dan instance variable agar code menjadi
 lebih clean.
+
+
+Tutorial 2
+
+1. List the code quality issue(s) that you fixed during the exercise and explain your strategy
+on fixing them.
+
+Salah satu strategi yang saya terapkan adalah melihat report dari ScoreCard dan SonarCloud saya. Salah satu hal yang saya ubah 
+pada kode saya adalah bagian redirect pada package controller. Saya pastikan redirect dari semua method yang saya tulis 
+sama persis dengan nama file html yang saya buat agar tidak terjadi bug saat dideploy. Selain itu, berdasarkan laporan dari SonarCloud saya,
+saya menambahkan caption pada tabel. Berdasarkan dokumentasi pada SonarCloud, hal ini dilakukan agar dapat memudahkan 
+pengguna untuk mengetahui deskripsi dari tabel tersebut
+
+
+2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current
+   implementation has met the definition of Continuous Integration and Continuous
+   Deployment? Explain the reasons (minimum 3 sentences)!
+
+Saya rasa implementasi CI/CD pada program saya sudah memenuhi ekspektasi. CI workflow saya akan
+berjalan secara otomatis setiap kali ada perubahan pada kode. CI workflow kemudian akan menjalankan
+unit testing pada kode saya. Di kode saya juga sudah saya implementasikan code scanning SonarCloud dan ScoreCard untuk
+mengecek kualitas dan keamanan dari program yang telah saya tulis secara otomatis. Terakhir, untuk CD workflows saya menggunakan
+bantuan koyeb untuk men-deploy website saya. Kode saya akan di-deploy secara otomatis saat ada perubahan pada
+main branch saya
