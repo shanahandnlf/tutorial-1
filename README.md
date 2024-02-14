@@ -75,3 +75,5 @@ unit testing pada kode saya. Di kode saya juga sudah saya implementasikan code s
 mengecek kualitas dan keamanan dari program yang telah saya tulis secara otomatis. Terakhir, untuk CD workflows saya menggunakan
 bantuan koyeb untuk men-deploy website saya. Kode saya akan di-deploy secara otomatis saat ada perubahan pada
 main branch saya
+
+![img.png](images/CodeCoverageTutorial2.png)
