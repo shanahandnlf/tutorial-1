@@ -83,6 +83,29 @@ Tutorial 3: SOLID Principle
 
 1) Explain what principles you apply to your project!
 
-2) Explain the advantages of applying SOLID principles to your project with examples.
+- Single Responsibility Principle (SRP): Memastikan tiap kelas hanya melakukan satu hal saja. Seperti saya memisahkan 
+CarController dari ProductController ke dalam file CarController.java agar tiap file hanya punya satu controller 
+sehingga hanya berurusan dengan model Car saja
+- Open-Closed Principle (OCP): Saya terapkan saat mengubah CarServiceImpl pada file CarController.java
+menjadi CarService agar kelas tersebut tidak terlalu mudah dipengaruhi oleh pembaruan kode
+pada CarServiceImpl tapi masih terbuka dengan menggunakan fungsionalitas CarService
+- Interface Segregation Principle (ISP) : Sudah terimplementasi di aplikasi dari awal dengan memisahkan interface CarService 
+dan ProductService sehingga jika ada perubahan di satu service, tidak akan memengaruh service lainnya
+- Dependency Inversions Principle (DIP): Saya menggunakan abstraksi dari suatu class, bukan concrete class itu sendiri 
+pada file CarController.java. Oleh karena itu, saya memakai interface CarService dibandingkan CarServiceImpl
 
+2) Explain the advantages of applying SOLID principles to your project with examples.
+Dengan menerapkan SOLID principle, kita menjadi lebih mudah untuk menambahkan fungsionalitas baru dan menjadi lebih terstruktur.
+Selain itu, kode yang kita buat menjadi lebih mudah untuk dilakukan maintenance dan testing. 
+
+Contohnya: Memisahkan CarController dari ProductController (menerapkan SRP), dependency antar kelas dari modul kita berkurang sehingga jika kita melakukan 
+perubahan pada satu kelas, tidak memengaruhi kelas lain jika terjadi error atau bug.
+
+   
 3) Explain the disadvantages of not applying SOLID principles to your project with examples.
+Tentu saja kita akan mengalami banyak kesulitan yang menghabiskan waktu. Seperti menghabiskan banyak waktu jika ingin menambahkan
+fungsionalitas baru atau melakukan maintenance karena kode kita terlalu rumit untuk dipahami. 
+
+Contohnya: Kita tidak memisahkan CarController dengan ProductController. Jika kita secara tidak sengaja menimbulkan sebauh 
+bug di satu kelas tersebut, bug tersebut bisa saja muncul di kelas lainnya. Hal ini akan menghabiskan waktu karena 
+kita lebih kesulitan untuk mencari tahu sumber masalah dari bug tersebut
