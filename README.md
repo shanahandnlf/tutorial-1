@@ -77,3 +77,12 @@ bantuan koyeb untuk men-deploy website saya. Kode saya akan di-deploy secara oto
 main branch saya
 
 ![img.png](images/CodeCoverageTutorial2.png)
+
+
+Tutorial 3: SOLID Principle
+
+1) Explain what principles you apply to your project!
+
+2) Explain the advantages of applying SOLID principles to your project with examples.
+
+3) Explain the disadvantages of not applying SOLID principles to your project with examples.
