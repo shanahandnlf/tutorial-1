@@ -1,8 +1,8 @@
-package repository;
+package id.ac.ui.cs.advprog.eshop.repository;
 
-import enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.model.Product;
-import model.Order;
+import id.ac.ui.cs.advprog.eshop.model.Order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
