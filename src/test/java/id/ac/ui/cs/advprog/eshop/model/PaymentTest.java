@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +31,10 @@ class PaymentTest {
         this.products.add(product1);
         this.products.add(product2);
 
-        Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
+        this.order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
                 this.products, 1708560000L, "Safira Sudrajat");
+
+        this.paymentData = new HashMap<>();
 
     }
 
@@ -44,7 +47,7 @@ class PaymentTest {
         assertEquals("1", newPayment.getId());
         assertEquals("voucherCode", newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
-        assertSame(payment.getOrder(), order);
+        assertSame(newPayment.getOrder(), order);
         assertEquals(OrderStatus.WAITING_PAYMENT.getValue(), newPayment.getStatus());
         paymentData.clear();
     }
@@ -57,7 +60,7 @@ class PaymentTest {
         assertEquals("1", newPayment.getId());
         assertEquals("voucherCode", newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
-        assertSame(payment.getOrder(), order);
+        assertSame(newPayment.getOrder(), order);
         assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
         paymentData.clear();
     }
@@ -71,13 +74,14 @@ class PaymentTest {
         assertEquals("1", newPayment.getId());
         assertEquals("bankTransfer", newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
-        assertSame(payment.getOrder(), order);
+        assertSame(newPayment.getOrder(), order);
         assertEquals(OrderStatus.WAITING_PAYMENT.getValue(), newPayment.getStatus());
         paymentData.clear();
     }
 
     @Test
     public void testCreatePaymentWithBankInfoAndStatus() {
+
         paymentData.put("bankName", "BCA");
         paymentData.put("referenceCode", "23122003");
 
@@ -85,7 +89,7 @@ class PaymentTest {
         assertEquals("1", newPayment.getId());
         assertEquals("bankTransfer", newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
-        assertSame(payment.getOrder(), order);
+        assertSame(newPayment.getOrder(), order);
         assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
         paymentData.clear();
     }
@@ -108,7 +112,7 @@ class PaymentTest {
 
         Payment newPayment = new Payment("1", "voucherCode", paymentData, order);
         newPayment.setStatus(OrderStatus.SUCCESS.getValue());
-        assertSame(payment.getOrder(), order);
+        assertSame(newPayment.getOrder(), order);
         assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
         paymentData.clear();
     }
@@ -120,7 +124,7 @@ class PaymentTest {
 
         Payment newPayment = new Payment("1", "bankTransfer", paymentData, order);
         newPayment.setStatus(OrderStatus.SUCCESS.getValue());
-        assertSame(payment.getOrder(), order);
+        assertSame(newPayment.getOrder(), order);
         assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
         paymentData.clear();
     }
