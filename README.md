@@ -110,3 +110,26 @@ fungsionalitas baru atau melakukan maintenance karena kode kita terlalu rumit un
 Contohnya: Kita tidak memisahkan CarController dengan ProductController. Jika kita secara tidak sengaja menimbulkan sebauh 
 bug di satu kelas tersebut, bug tersebut bisa saja muncul di kelas lainnya. Hal ini akan menghabiskan waktu karena 
 kita lebih kesulitan untuk mencari tahu sumber masalah dari bug tersebut
+
+
+Tutorial 4
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best
+Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this
+TDD flow is useful enough for you or not. If not, explain things that you need to do next time
+you make more tests.
+
+Dengan menggunakan TDD, alur pengerjaan saya menjadi lebih jelas karena dibagi menjadi tiga bagisn,
+yaitu membuat tes, implementasi, dan refactoring. Ketiga tahap ini harus dilakukan secara berurutan. Tahap
+membuat tes akan memastikan class yang kita buat meng-handle semua kasus baik yang positif atau negatif. Hal ini juga
+membuat kode kita menjadi lebih bug-free serta memudahkan proses refactoring juga.
+
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully
+followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you
+create more tests.
+
+Menurut saya unit test yang dibuat pada tutorial telah mencukupi prinsip F.I.R.S.T. Setiap unit test dikhususkan untuk satu method
+sehingga tidak memengaruhi metode lain. Saya juga menggunakan mock untuk membantu simulasi tes yang terisolasi dan memastikan metode yang
+diuji bekerja dengan baik. Setiap tes pada tutorial juga dibuat dengan kasus happy dan unhappy agar dapat mengecek kasus secara
+lebih menyeluruh. Jadi menurut saya unit test sudah memenuhi prinsip F.I.R.S.T karena tiap tes menguji satu bagian dari fungsionalitas kode.
