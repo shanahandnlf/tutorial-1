@@ -1,27 +1,25 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import lombok.Getter;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
-
 
 @Getter
 public class Payment {
 
-    String id;
-    String method;
-    Order order;
-    Map<String, String> paymentData;
+    private String id;
+    private PaymentMethod method;
+    private Order order;
+    private Map<String, String> paymentData;
+    private PaymentStatus status;
 
-    String status;
-
-    public Payment(String id, String method, Map<String, String> paymentData, Order order) {
-        this(id, method, paymentData, order, "WAITING_PAYMENT");
+    public Payment(String id, PaymentMethod method, Map<String, String> paymentData, Order order) {
+        this(id, method, paymentData, order, PaymentStatus.WAITING_PAYMENT);
     }
 
-    public Payment(String id, String method, Map<String, String> paymentData, Order order, String status) {
+    public Payment(String id, PaymentMethod method, Map<String, String> paymentData, Order order, PaymentStatus status) {
         this.id = id;
         this.method = method;
         this.setOrder(order);
@@ -36,10 +34,8 @@ public class Payment {
         this.order = order;
     }
 
-    public void setStatus(String status) {
-        List<String> statusList = Arrays.asList("PENDING", "SUCCESS", "REJECTED", "WAITING_PAYMENT");
-
-        if (!statusList.contains(status)) {
+    public void setStatus(PaymentStatus status) {
+        if (status == null) {
             throw new IllegalArgumentException("Invalid payment status");
         }
         this.status = status;
