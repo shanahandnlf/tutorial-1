@@ -1,6 +1,8 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,12 +45,12 @@ class PaymentTest {
     public void testCreatePaymentWithVoucher() {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
-        Payment newPayment = new Payment("1", "voucherCode", paymentData, order);
+        Payment newPayment = new Payment("1", PaymentMethod.VOUCHER, paymentData, order);
         assertEquals("1", newPayment.getId());
-        assertEquals("voucherCode", newPayment.getMethod());
+        assertEquals(PaymentMethod.VOUCHER, newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
         assertSame(newPayment.getOrder(), order);
-        assertEquals(OrderStatus.WAITING_PAYMENT.getValue(), newPayment.getStatus());
+        assertEquals(PaymentStatus.WAITING_PAYMENT, newPayment.getStatus());
         paymentData.clear();
     }
 
@@ -56,12 +58,12 @@ class PaymentTest {
     public void testCreatePaymentWithVoucherAndStatus() {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
-        Payment newPayment = new Payment("1", "voucherCode", paymentData, order, OrderStatus.SUCCESS.getValue());
+        Payment newPayment = new Payment("1", PaymentMethod.VOUCHER, paymentData, order, PaymentStatus.SUCCESS);
         assertEquals("1", newPayment.getId());
-        assertEquals("voucherCode", newPayment.getMethod());
+        assertEquals(PaymentMethod.VOUCHER, newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
         assertSame(newPayment.getOrder(), order);
-        assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS, newPayment.getStatus());
         paymentData.clear();
     }
 
@@ -70,12 +72,12 @@ class PaymentTest {
         paymentData.put("bankName", "BCA");
         paymentData.put("referenceCode", "23122003");
 
-        Payment newPayment = new Payment("1", "bankTransfer", paymentData, order);
+        Payment newPayment = new Payment("1", PaymentMethod.BANK, paymentData, order);
         assertEquals("1", newPayment.getId());
-        assertEquals("bankTransfer", newPayment.getMethod());
+        assertEquals(PaymentMethod.BANK, newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
         assertSame(newPayment.getOrder(), order);
-        assertEquals(OrderStatus.WAITING_PAYMENT.getValue(), newPayment.getStatus());
+        assertEquals(PaymentStatus.WAITING_PAYMENT, newPayment.getStatus());
         paymentData.clear();
     }
 
@@ -85,35 +87,35 @@ class PaymentTest {
         paymentData.put("bankName", "BCA");
         paymentData.put("referenceCode", "23122003");
 
-        Payment newPayment = new Payment("1", "bankTransfer", paymentData, order, OrderStatus.SUCCESS.getValue());
+        Payment newPayment = new Payment("1", PaymentMethod.BANK, paymentData, order, PaymentStatus.SUCCESS);
         assertEquals("1", newPayment.getId());
-        assertEquals("bankTransfer", newPayment.getMethod());
+        assertEquals(PaymentMethod.BANK, newPayment.getMethod());
         assertEquals(paymentData, newPayment.getPaymentData());
         assertSame(newPayment.getOrder(), order);
-        assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS, newPayment.getStatus());
         paymentData.clear();
     }
 
     @Test
     void testCreatePaymentWithEmptyPaymentData() {
-        assertThrows(IllegalArgumentException.class, () -> new Payment("1", "voucherCode", new HashMap<>(), order));
+        assertThrows(IllegalArgumentException.class, () -> new Payment("1", PaymentMethod.VOUCHER, new HashMap<>(), order));
     }
 
     @Test
     void testCreatePaymentWithInvalidStatus() {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
-        assertThrows(IllegalArgumentException.class, () -> new Payment("1", "voucherCode", paymentData, order, "Invalid"));
+        assertThrows(IllegalArgumentException.class, () -> new Payment("1", PaymentMethod.VOUCHER, paymentData, order, PaymentStatus.valueOf("INVALID")));
     }
 
     @Test
     void testSetStatusWithVoucher() {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
-        Payment newPayment = new Payment("1", "voucherCode", paymentData, order);
-        newPayment.setStatus(OrderStatus.SUCCESS.getValue());
+        Payment newPayment = new Payment("1", PaymentMethod.VOUCHER, paymentData, order);
+        newPayment.setStatus(PaymentStatus.SUCCESS);
         assertSame(newPayment.getOrder(), order);
-        assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS, newPayment.getStatus());
         paymentData.clear();
     }
 
@@ -122,10 +124,10 @@ class PaymentTest {
         paymentData.put("bankName", "BCA");
         paymentData.put("referenceCode", "23122003");
 
-        Payment newPayment = new Payment("1", "bankTransfer", paymentData, order);
-        newPayment.setStatus(OrderStatus.SUCCESS.getValue());
+        Payment newPayment = new Payment("1", PaymentMethod.BANK, paymentData, order);
+        newPayment.setStatus(PaymentStatus.SUCCESS);
         assertSame(newPayment.getOrder(), order);
-        assertEquals(OrderStatus.SUCCESS.getValue(), newPayment.getStatus());
+        assertEquals(PaymentStatus.SUCCESS, newPayment.getStatus());
         paymentData.clear();
     }
 
@@ -133,14 +135,14 @@ class PaymentTest {
     void testSetInvalidStatus() {
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
 
-        Payment newPayment = new Payment("1", "voucherCode", paymentData, order);
-        assertThrows(IllegalArgumentException.class, () -> newPayment.setStatus("INVALID_STATUS"));
+        Payment newPayment = new Payment("1", PaymentMethod.VOUCHER, paymentData, order);
+        assertThrows(IllegalArgumentException.class, () -> newPayment.setStatus(PaymentStatus.valueOf("INVALID")));
         paymentData.clear();
     }
 
     @Test
     void testSetStatusWithEmptyPaymentData() {
-        assertThrows(IllegalArgumentException.class, () -> new Payment("1", "voucherCode", new HashMap<>(), order));
+        assertThrows(IllegalArgumentException.class, () -> new Payment("1", PaymentMethod.VOUCHER, new HashMap<>(), order));
     }
 }
 
