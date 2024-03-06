@@ -1,12 +1,12 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
-@Builder
+
 @Getter
 public class Payment {
 
@@ -15,10 +15,40 @@ public class Payment {
     Order order;
     Map<String, String> paymentData;
 
-    @Setter
     String status;
 
-    public Payment(String id, String method, Order order, Map<String, String> paymentData) {}
+    public Payment(String id, String method, Map<String, String> paymentData, Order order) {
+        this(id, method, paymentData, order, "WAITING_PAYMENT");
+    }
 
-    public Payment(String id, String method, Order order, Map<String, String> paymentData, String status) {}
+    public Payment(String id, String method, Map<String, String> paymentData, Order order, String status) {
+        this.id = id;
+        this.method = method;
+        this.setOrder(order);
+        this.setPaymentData(paymentData);
+        this.setStatus(status);
+    }
+
+    private void setOrder(Order order) {
+        if (order == null) {
+            throw new IllegalArgumentException("Order cannot be null");
+        }
+        this.order = order;
+    }
+
+    public void setStatus(String status) {
+        List<String> statusList = Arrays.asList("PENDING", "SUCCESS", "REJECTED", "WAITING_PAYMENT");
+
+        if (!statusList.contains(status)) {
+            throw new IllegalArgumentException("Invalid payment status");
+        }
+        this.status = status;
+    }
+
+    protected void setPaymentData(Map<String, String> paymentData) {
+        if (paymentData == null || paymentData.isEmpty()) {
+            throw new IllegalArgumentException("Payment data cannot be empty");
+        }
+        this.paymentData = paymentData;
+    }
 }
